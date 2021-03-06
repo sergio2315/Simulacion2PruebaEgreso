@@ -29,7 +29,6 @@ class PhonesAdapter: RecyclerView.Adapter<PhonesAdapter.PhonesAdapterVH>() {
         override fun onClick(v: View?) {
             selectedItem().value = listPhones[adapterPosition]
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PhonesAdapterVH {

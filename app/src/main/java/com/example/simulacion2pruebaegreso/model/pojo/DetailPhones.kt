@@ -1,6 +1,5 @@
 package com.example.simulacion2pruebaegreso.model.pojo
 
-import androidx.room.Database
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -18,4 +17,4 @@ data class DetailPhones (@PrimaryKey val id: Int,
                          @SerializedName("lastPrice")
                          val lastPrice: String,
                          @SerializedName("credit")
-                         val credit: String)
+                         val credit: Boolean)

@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import com.example.simulacion2pruebaegreso.model.pojo.DetailPhones
 import com.example.simulacion2pruebaegreso.model.pojo.Phones
 
-@Database(entities = [Phones::class],version = 1)
+@Database(entities = [Phones::class, DetailPhones::class],version = 1)
 abstract class PhonesDataBase: RoomDatabase(){
     abstract fun getPhonesDao(): PhonesDao
 

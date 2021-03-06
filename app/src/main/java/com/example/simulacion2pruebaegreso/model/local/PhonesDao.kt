@@ -16,9 +16,12 @@ interface PhonesDao {
     @Query("SELECT * FROM phones_table")
     fun getAllPhonesBD(): LiveData<List<Phones>>
 
-    /*@Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertAllDetailPhones(list: List<DetailPhones>)
 
+    @Query("SELECT * FROM detailPhones_table")
+    fun getAllDetailPhonesBD(): LiveData<List<DetailPhones>>
+
     @Query("SELECT * FROM detailPhones_table WHERE id= :id")
-    fun getDetailPhonesById(id: Int): LiveData<DetailPhones>*/
+    fun getDetailPhonesById(id: Int): LiveData<DetailPhones>
 }

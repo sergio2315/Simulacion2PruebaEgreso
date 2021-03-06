@@ -42,9 +42,8 @@ class FirstFragment : Fragment() {
         })
         adapter.selectedItem().observe(viewLifecycleOwner, Observer {
             it?.let {
-                Toast.makeText(context, "El precio es "+it.price, Toast.LENGTH_LONG).show()
-                //viewModel.selected(it)
-                //findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+                viewModel.selected(it)
+                findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             }
         })
     }
