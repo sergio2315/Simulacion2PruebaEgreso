@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:backgroundTint="#212121"
+    android:backgroundTint="#BDBDBD"
     tools:context=".ui.SecondFragment">
 
     <ImageView

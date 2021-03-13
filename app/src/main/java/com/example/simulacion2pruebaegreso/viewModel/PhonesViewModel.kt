@@ -35,4 +35,5 @@ class PhonesViewModel(application: Application) : AndroidViewModel(application) 
     fun getDetailPhonesByID(id: Int): LiveData<DetailPhones> {
         return repository.getDetailPhonesByID(id)
     }
+
 }

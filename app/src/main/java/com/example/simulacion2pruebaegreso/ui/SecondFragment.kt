@@ -3,20 +3,15 @@ package com.example.simulacion2pruebaegreso.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.simulacion2pruebaegreso.R
 import com.example.simulacion2pruebaegreso.databinding.FragmentSecondBinding
-import com.example.simulacion2pruebaegreso.model.pojo.DetailPhones
 import com.example.simulacion2pruebaegreso.viewModel.PhonesViewModel
 
 class SecondFragment : Fragment() {
@@ -47,23 +42,31 @@ class SecondFragment : Fragment() {
 
                     binding.txDescription1.text = it.description
                 })
+                val mId = it.id
+                val name = it.name
+                binding.btnContact.setOnClickListener{
+                    sendEmail(name, mId)
+                }
             }
         })
-        binding.btnContact.setOnClickListener{
-            sendEmail()
-        }
-    }
-    private fun sendEmail() {
 
+    }
+    private fun sendEmail(name: String, id: Int) {
+        val email = arrayOf("info@novaera.cl")
+        val subject = "Consulta $name id $id"
+        val mesage = "Hola\n" +
+                "Vi la propiedad $name de código $id y me gustaría que me\n" +
+                "contactaran a este correo o al siguiente número __________\n" +
+                "Quedo atento.”"
         val intent = Intent(Intent.ACTION_SEND)
-        intent.data = Uri.parse("sergiolillo@udec.cl")
+        intent.data = Uri.parse("mailto:")
         intent.type = "text/plain"
-        intent.putExtra(Intent.EXTRA_EMAIL, "sergiolillo@udec.cl")
-        intent.putExtra(Intent.EXTRA_SUBJECT, "compra celular")
-        intent.putExtra(Intent.EXTRA_TEXT, "deseo comprar este celular")
+        intent.putExtra(Intent.EXTRA_EMAIL, email)
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        intent.putExtra(Intent.EXTRA_TEXT, mesage)
 
         try {
-            startActivity(Intent.createChooser(intent,"sergiolillo@udec.cl"))
+            startActivity(intent)
         } catch (e: Exception) {
             Toast.makeText(context, "e.message", Toast.LENGTH_LONG).show()
         }
