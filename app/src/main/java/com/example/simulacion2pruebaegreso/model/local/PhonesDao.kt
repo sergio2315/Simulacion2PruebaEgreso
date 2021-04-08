@@ -20,7 +20,7 @@ interface PhonesDao {
     suspend fun insertAllDetailPhones(list: List<DetailPhones>)
 
     @Query("SELECT * FROM detailPhones_table")
-    fun getAllDetailPhonesBD(): LiveData<List<DetailPhones>>
+    fun getAllDetailPhonesBD(): LiveData<DetailPhones>
 
     @Query("SELECT * FROM detailPhones_table WHERE id= :id")
     fun getDetailPhonesById(id: Int): LiveData<DetailPhones>

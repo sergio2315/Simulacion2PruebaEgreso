@@ -10,7 +10,6 @@ import com.example.simulacion2pruebaegreso.model.pojo.Phones
 @Database(entities = [Phones::class, DetailPhones::class],version = 1)
 abstract class PhonesDataBase: RoomDatabase(){
     abstract fun getPhonesDao(): PhonesDao
-
     companion object {
         @Volatile
         private var INSTANCE: PhonesDataBase? = null

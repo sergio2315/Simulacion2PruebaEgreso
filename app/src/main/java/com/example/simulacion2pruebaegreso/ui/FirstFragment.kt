@@ -42,7 +42,7 @@ class FirstFragment : Fragment() {
         })
         adapter.selectedItem().observe(viewLifecycleOwner, Observer {
             it?.let {
-                viewModel.selected(it)
+                viewModel.selectedDetailPhone(it.id)
                 findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
             }
         })

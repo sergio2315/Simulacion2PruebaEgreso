@@ -19,21 +19,16 @@ class PhonesViewModel(application: Application) : AndroidViewModel(application) 
         repository = PhonesRepository(dao)
         viewModelScope.launch {
             repository.getPhonesWithCourutines()
-            repository.getDetailPhonesWithCourutines()
         }
     }
     fun getPhonesList(): LiveData<List<Phones>> = repository.liveDataDB
 
-    private val selectedPhone: MutableLiveData<Phones> = MutableLiveData()
+    private var mId : Int = 0
 
-    fun selected(phones: Phones?) {
-        selectedPhone.value = phones
+    fun selectedDetailPhone(id: Int) = viewModelScope.launch{
+        mId = id
+        repository.getDetailPhonesWithCourutines(id)
     }
-
-    fun selectedItem(): LiveData<Phones> = selectedPhone
-
-    fun getDetailPhonesByID(id: Int): LiveData<DetailPhones> {
-        return repository.getDetailPhonesByID(id)
-    }
+    fun returnDetail(): LiveData<DetailPhones> = repository.getDetailPhonesByID(mId)
 
 }

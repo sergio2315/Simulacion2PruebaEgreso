@@ -15,6 +15,6 @@ data class DetailPhones (@PrimaryKey val id: Int,
                          @SerializedName("description")
                          val description: String,
                          @SerializedName("lastPrice")
-                         val lastPrice: String,
+                         val lastPrice: Int,
                          @SerializedName("credit")
                          val credit: Boolean)

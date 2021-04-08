@@ -3,6 +3,7 @@ package com.example.simulacion2pruebaegreso.ui
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -27,31 +28,29 @@ class SecondFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+       viewModel.returnDetail().observe(viewLifecycleOwner, Observer {
+           it?.let {
+               var credit = ""
+               if (it.credit){
+                   credit = "Acepta crédito"
+               }else{
+                   credit = "Solo efectivo"
+               }
+               Glide.with(binding.imageView2).load(it.image).centerCrop().into(binding.imageView2)
+               binding.txLastPrice.text = "Antes: "+it.lastPrice
+               binding.txActualPrice.text = "Ahora: "+it.price
+               binding.txCredit.text = credit
+               binding.txDescription1.text = it.description
 
-        viewModel.selectedItem().observe(viewLifecycleOwner, Observer {
-            it?.let {
-                viewModel.getDetailPhonesByID(it.id).observe(viewLifecycleOwner, Observer {
-                    Glide.with(binding.imageView2).load(it.image).centerCrop().into(binding.imageView2)
-                    binding.txLastPrice.text = "Antes "+it.lastPrice
-                    binding.txActualPrice.text = "Ahora "+it.price
-                    if (it.credit){
-                        binding.txCredit.text = "Acepta crédito"
-                    }else{
-                        binding.txCredit.text = "No acepta crédito"
-                    }
-
-                    binding.txDescription1.text = it.description
-                })
-                val mId = it.id
-                val name = it.name
-                binding.btnContact.setOnClickListener{
-                    sendEmail(name, mId)
-                }
-            }
-        })
-
+               val mId = it.id
+               val name = it.name
+               binding.btnContact.setOnClickListener{
+                   sendEmail(name, mId)
+               }
+           }
+       })
     }
-    private fun sendEmail(name: String, id: Int) {
+    fun sendEmail(name: String, id: Int) {
         val email = arrayOf("info@novaera.cl")
         val subject = "Consulta $name id $id"
         val mesage = "Hola\n" +

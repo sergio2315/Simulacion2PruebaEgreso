@@ -40,5 +40,4 @@ class PhonesAdapter: RecyclerView.Adapter<PhonesAdapter.PhonesAdapterVH>() {
     }
     override fun getItemCount(): Int = listPhones.size
 
-
 }
